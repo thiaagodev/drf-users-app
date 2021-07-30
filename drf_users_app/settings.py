@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'localflavor',
     'rest_framework_simplejwt',
     'celery',
+    'drf_yasg',
 
     # local apps
     'users',

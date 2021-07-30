@@ -11,26 +11,64 @@ Esse é um app de usuários personalizado feito em Django REST Framework, nele e
 - Testes automatizados para todas funcionalidades
 
 ### Arquivo ENV necessário para rodar o projeto
+
 Se você desejar clonar esse repositório e rodar na sua máquina para testar, terá de adicionar um arquivo .env na pasta raiz com as seguintes variáveis:
 
-<strong>OBS:</strong> Sugiro que crie uma venv para evitar problemas.
+**OBS:** Sugiro que crie uma venv para evitar problemas.
 
-SECRET_KEY=< Secret Key do projeto (pode ser a que o django mesmo gera) >
-<br>
-EMAIL_HOST=< Host de email (Eu usei o mailtrap para testes) > 
-<br>
-EMAIL_HOST_USER= < Usuário da conta de email >
-<br>
-EMAIL_HOST_PASSWORD=< Senha do email >
-<br>
-EMAIL_PORT=< Porta do provedor >
+```
+SECRET_KEY=<Secret Key do projeto (pode ser a que o django mesmo gera)>
+EMAIL_HOST=<Host de email (Eu usei o mailtrap para testes)> 
+EMAIL_HOST_USER= <Usuário da conta de email>
+EMAIL_HOST_PASSWORD=<Senha do email>
+EMAIL_PORT=<Porta do provedor>
+```
+
+Você pode rodar o comando a seguir para criar um `.env` de exemplo.
+
+```
+python contrib/env_gen.py
+```
 
 ### E como rodar o projeto?
 
 Depois de clonar o repositório, criar e ativar a venv e configurar devidamente as variáveis ambientes, siga os passos para rodar e testar o projeto:
 
-- pip install -r requirements.txt (Para instalar as libs necessárias)
-- python manage.py migrate (Para rodar as migrações do banco de dados)
-- python manage.py runserver 
+```
+# Instalar as libs necessárias
+pip install -r requirements.txt
 
-<strong>Pronto! o projeto já deve estar no ar e funcionando corretamente.</strong>
+python manage.py migrate
+
+python manage.py runserver
+```
+
+Ao rodar a aplicação entre em http://localhost:8000/api/users/create/
+
+preencha, e salve os dados.
+
+Em seguida, você receberá um e-mail com o token de ativação.
+
+A resposta será o token que deverá ser usado nas demais requisições.
+
+
+**Pronto! o projeto já deve estar no ar e funcionando corretamente.**
+
+
+## Swagger
+
+No endereço http://localhost:8000/swagger/
+
+você tem uma doc feita com [drf-yasg](https://drf-yasg.readthedocs.io/en/stable/readme.html#installation) que te mostra todos os endpoints do sistema.
+
+![swagger.png](img/swagger.png)
+
+
+## MailHog
+
+Se quiser rodar [MailHog](https://github.com/mailhog/MailHog) via Docker. Você pode receber os e-mails localmente através dele.
+
+```
+docker run -d -p 1025:1025 -p 8025:8025 mailhog/mailhog
+```
+
