@@ -1,6 +1,6 @@
 # App de Usuários
 
-Esse é um app de usuários personalizado feito em Django REST Framework, nele eu modifiquei o model padrão de users do Django, adicionando campos como CPF, data de nascimento e outros. Também exclui o campo username, deixando o sistema de login com email e senha, criei funcionalidades relacionadas a conta do usuário, como criar, ativar conta, visualizar, atualizar e deletar dados, com envio de emails para ativar a conta e redefinir a senha usando Celery e RabbitMQ(Message Broker), e todas as funcionalidades com testes automatizados. O login é feito com a lib simple-jwt. 
+Esse é um app de usuários personalizado feito em Django REST Framework, nele eu modifiquei o model padrão de users do Django, adicionando campos como CPF, data de nascimento e outros. Também exclui o campo username, deixando o sistema de login apenas com campos de email e senha, criei funcionalidades relacionadas a conta do usuário, como criar e ativar a conta, visualizar, atualizar e deletar seus dados, com envios de e-mails para ativação da conta e redefinição de senha usando Celery e RabbitMQ(Message Broker), e todas as funcionalidades com testes automatizados. O processo login(obtenção do token de acesso) e refresh do token é feito com a lib simple-jwt. 
 
 ### O que tem na API?
 
@@ -33,6 +33,14 @@ python contrib/env_gen.py
 ### E como rodar o projeto?
 
 Depois de clonar o repositório, criar e ativar a venv e configurar devidamente as variáveis ambientes, siga os passos para rodar e testar o projeto:
+
+Instale o Message Broker RabbitMQ no seu computador, no meu caso, fiz no Windows, porém o processo pode ser diferente em outros sistemas operacionais, para isso siga os passos no site oficial: https://www.rabbitmq.com/download.html
+
+Após instalado, verifique a url de acesso a ele e modifique caso necessário no arquivo `settings.py`.
+
+Para iniciar o celery, utilize o seguinte comando no terminal:
+
+`celery -A drf_users_app worker -l info -P eventlet`
 
 ```
 # Instalar as libs necessárias
