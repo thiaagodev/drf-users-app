@@ -47,9 +47,14 @@ Ao rodar a aplicação entre em http://localhost:8000/api/users/create/
 
 preencha, e salve os dados.
 
-Em seguida, você receberá um e-mail com o token de ativação.
+Em seguida, você receberá um e-mail com link de ativação, seria o link do frontend da aplicação, pegue somente o **token** da url e envie para /api/users/activate com o body `{"token": token}` e você receberá um status code 200, o que quer dizer que sua conta foi ativada no sistema.
 
-A resposta será o token que deverá ser usado nas demais requisições.
+**Obs**: sugiro que use Postman ou Insomnia.
+
+Agora com sua conta já ativada, você poderá fazer o login pra ter acesso as funcionalidades, pra isso envie no body da requisição o email e senha para a rota /api/users/login/ .
+
+A resposta será um *token de refresh* e um *token de acesso*. Com o *token de acesso* você poderá mandar no header das requisições que necessitam de autenticação com o esquema de `Bearer token`, exemplo: `GET api/users/me/` se você estiver autenticado receberá como retorno seus dados de cadastro.
+
 
 
 **Pronto! o projeto já deve estar no ar e funcionando corretamente.**
