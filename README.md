@@ -49,11 +49,14 @@ pip install -r requirements.txt
 python manage.py migrate
 
 python manage.py runserver
+
+# Para rodar os testes
+python manage.py test
 ```
 
 Ao rodar a aplicação entre em http://localhost:8000/api/users/create/
 
-preencha, e salve os dados.
+Preencha e salve os dados para criar um usuário, detalhe: por padrão o usuário é inativo e não pode logar no sistema, somente será possível após confirmar o e-mail.
 
 Em seguida, você receberá um e-mail com link de ativação, seria o link do frontend da aplicação, pegue somente o **token** da url e envie para /api/users/activate com o body `{"token": token}` e você receberá um status code 200, o que quer dizer que sua conta foi ativada no sistema.
 
